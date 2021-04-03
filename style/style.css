@@ -1,0 +1,26 @@
+body {
+    background-color: #404040;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+div {
+    border: 2px solid red;
+}
+
+#header {
+    border: 2px solid red;
+    height: 125px;
+    margin: 15px;
+}
+#cardContainer {
+    border: 2px solid red;
+    margin: 15px;
+    height: 450px;
+    width: 600px;
+}
+#footer {
+    border: 2px solid red;
+    height: 75px;
+    margin: 15px;
+}

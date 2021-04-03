@@ -51,8 +51,11 @@ const nextPage = (event) => {
     console.log('changing pages')
     currentPage += 1
     if (currentPage > 34) {
+        alert('you are on the last page')
         currentPage = 34;
     }
+    let $currentPage = $('.pg')
+    $currentPage.text(currentPage);
     getRequest()
 }
 const prevPage = (event) => {
@@ -61,17 +64,20 @@ const prevPage = (event) => {
     console.log('changing pages')
     currentPage -= 1
     if (currentPage < 1) {
+        alert('you are on the first page')
         currentPage = 1;
     }
+    let $currentPage = $('.pg')
+    $currentPage.text(currentPage);
     getRequest()
 }
 
 $(() => {
     getRequest();
 
-    $('#next').on('click', nextPage);
+    $('.next').on('click', nextPage);
 
-    $('#previous').on('click', prevPage);
+    $('.previous').on('click', prevPage);
 
     
     // getRequest()

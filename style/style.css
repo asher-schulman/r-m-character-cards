@@ -13,6 +13,11 @@ body {
     margin: 15px;
 }
 
+#searchbar {
+    width: 300px;
+    height: 35px;
+}
+
 #filterbar {
     display: flex;
     justify-content: left;

@@ -4,9 +4,9 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-div {
-    /* border: 2px solid red; */
-}
+/* div {
+    border: 2px solid red;
+} */
 
 #header {
     height: 150px;
@@ -77,8 +77,11 @@ div {
     /* background-image: url(/assets/background-sunset.jpg); */
     display: flex;
     width: auto;
-    height: 300px;
+    height: auto;
     margin: 15px;
+}
+.title {
+    font-weight: bold;
 }
 
 #footer {

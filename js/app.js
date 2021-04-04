@@ -6,11 +6,12 @@ if (typeof $ == 'undefined') {
 //variables for ajax requests
 const baseURL = 'https://rickandmortyapi.com/api/character';
 let currentPage = 1;
-const page = '?page='
+const page = '?page=';
+let filter = '';
 //$.ajax() request for character data
 const getRequest = () => {
     $.ajax({
-            url: baseURL + page + currentPage,
+            url: baseURL + page + currentPage + filter,
             type: 'GET',
         })
         .then(results = (data) => {
@@ -35,37 +36,76 @@ const getRequest = () => {
             }
         })
 }
-const nextPage = (event) => {
-    event.preventDefault();
-    $('#cardContainer').empty();
-    console.log('changing pages')
-    currentPage += 1
-    if (currentPage > 34) {
-        alert('you are already on the last page')
-        currentPage = 1;
+
+const listeners = {
+    id: 'object storing functions',
+    next: function nextPage(event) {
+        event.preventDefault();
+        $('#cardContainer').empty();
+        console.log('changing pages')
+        currentPage += 1
+        if (currentPage > 34) {
+            alert('you are already on the last page')
+            currentPage = 1;
+        }
+        let $currentPage = $('.pg')
+        $currentPage.text(currentPage);
+        getRequest()
+    },
+    prev: function prevPage(event) {
+        event.preventDefault();
+        $('#cardContainer').empty();
+        console.log('changing pages')
+        currentPage -= 1
+        if (currentPage < 1) {
+            alert('you are already on the first page')
+            currentPage = 34;
+        }
+        let $currentPage = $('.pg')
+        $currentPage.text(currentPage);
+        getRequest()
     }
-    let $currentPage = $('.pg')
-    $currentPage.text(currentPage);
-    getRequest()
-}
-const prevPage = (event) => {
-    event.preventDefault();
-    $('#cardContainer').empty();
-    console.log('changing pages')
-    currentPage -= 1
-    if (currentPage < 1) {
-        alert('you are already on the first page')
-        currentPage = 34;
-    }
-    let $currentPage = $('.pg')
-    $currentPage.text(currentPage);
-    getRequest()
-}
+};
+// ended up putting both of these functions, withing my 'listeners' object and calling upon those methods during my event listener click events
+// const nextPage = (event) => {
+//     event.preventDefault();
+//     $('#cardContainer').empty();
+//     console.log('changing pages')
+//     currentPage += 1
+//     if (currentPage > 34) {
+//         alert('you are already on the last page')
+//         currentPage = 1;
+//     }
+//     let $currentPage = $('.pg')
+//     $currentPage.text(currentPage);
+//     getRequest()
+// }
+// const prevPage = (event) => {
+//     event.preventDefault();
+//     $('#cardContainer').empty();
+//     console.log('changing pages')
+//     currentPage -= 1
+//     if (currentPage < 1) {
+//         alert('you are already on the first page')
+//         currentPage = 34;
+//     }
+//     let $currentPage = $('.pg')
+//     $currentPage.text(currentPage);
+//     getRequest()
+// }
+// const searchFilter = (event) => {
+//     event.preventDefault();
+//     console.log('search button')
+// }
 
 $(() => {
     getRequest();
 
-    $('.next').on('click', nextPage);
+    $('.next').on('click', listeners.next);
+    // $('.next').on('click', nextPage);
 
-    $('.previous').on('click', prevPage);
+    $('.previous').on('click', listeners.prev);
+    // $('.previous').on('click', prevPage);
+
+    $('#search').on('click', searchFilter);
 });

@@ -2,6 +2,8 @@ body {
     background-color: #202020;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 button {
@@ -16,6 +18,11 @@ button {
 #header {
     height: 150px;
     margin: 15px;
+}
+
+#navContainer {
+    margin: auto;
+    padding: 40px 5px 5px 5px;
 }
 
 #searchbar {

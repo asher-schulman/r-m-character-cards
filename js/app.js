@@ -133,6 +133,8 @@ $(() => {
     $('#search').on('click', listeners.search);
 
     $('#aliveFilter').on('click', listeners.aliveFilter);
+
     $('#deadFilter').on('click', listeners.deadFilter);
+    
     $('#genderFilter').on('click', listeners.genderFilter);
 });

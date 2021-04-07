@@ -7,7 +7,6 @@ h1 {
 }
 
 h3 {
-    text-align: center;
     font-size: 16pt;
 }
 
@@ -116,20 +115,14 @@ button {
     #header {
         height: 500px;
     }
-
-    img {
-        height: 150px;
-    }
-}
-
-
-@media only screen and (max-width:800px) {
-
-    /* For tablets: */
     #cardContainer {
         display: flex;
         flex-flow: row wrap;
     }
+    .card {
+        height: 250px;
+    }
+
     img {
         height: 250px;
     }
@@ -139,7 +132,20 @@ button {
     #header {
         height: 560px;
     }
-
+    h3 {
+        margin: 0;
+    }
+    p {
+        font-size: 12pt;
+        margin: 0;
+    }
+    #cardContainer {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .card {
+        height: 150px;
+    }
     img {
         height: 150px;
     }
@@ -163,7 +169,7 @@ button {
     /* background-image: url(/assets/background-sunset.jpg); */
     display: flex;
     width: 90%;
-    height: auto;
+    /* height: auto; */
     margin: 15px;
 }
 

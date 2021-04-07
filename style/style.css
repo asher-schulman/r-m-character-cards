@@ -1,9 +1,22 @@
+/* * {
+    box-sizing: border-box;
+} */
+h1 {
+    font-size: 32pt;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    font-size: 16pt;
+}
+
 body {
     background-color: #202020;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
-    display: flex;
-    flex-flow: row wrap;
+    /* display: flex;
+    flex-flow: row wrap; */
 }
 
 button {
@@ -16,13 +29,15 @@ button {
 } */
 
 #header {
-    height: 150px;
-    margin: 15px;
+    height: 400px;
+    width: 50%;
+    margin: auto;
+    /* position:sticky;
+    top: 0; */
 }
 
 #navContainer {
     margin: auto;
-    padding: 40px 5px 5px 5px;
 }
 
 #searchbar {
@@ -44,14 +59,20 @@ button {
 
 #filterbar {
     display: flex;
-    justify-content: left;
+    justify-content: center;
+}
+
+#searchingbar {
+    display: flex;
+    justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
 
 .filter {
-    margin: 5px;
     width: 150px;
-    height: 40px;
+    height: 45px;
+    margin: 0 10px;
 }
 
 #logo {
@@ -67,14 +88,14 @@ button {
 
 #pageButtons {
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 50px;
     width: 400px;
     margin: auto;
 }
 
-.next, .previous{
+.next,
+.previous {
     margin: 5px;
     width: 100px;
     height: 30px;
@@ -82,10 +103,46 @@ button {
 
 #cardContainer {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 40%;
+    /* display: flex;
+    flex-flow: row wrap; */
+    justify-content: center;
     margin: auto;
     height: auto;
-    width: 80%;
+    width: auto;
+}
+
+@media only screen and (max-width:1200px) {
+    #header {
+        height: 500px;
+    }
+
+    img {
+        height: 150px;
+    }
+}
+
+
+@media only screen and (max-width:800px) {
+
+    /* For tablets: */
+    #cardContainer {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    img {
+        height: 250px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    #header {
+        height: 560px;
+    }
+
+    img {
+        height: 150px;
+    }
 }
 
 .cardTextContainer {
@@ -105,10 +162,11 @@ button {
     border-radius: 15px;
     /* background-image: url(/assets/background-sunset.jpg); */
     display: flex;
-    width: auto;
+    width: 90%;
     height: auto;
     margin: 15px;
 }
+
 .title {
     font-weight: bold;
 }
@@ -116,5 +174,5 @@ button {
 #footer {
     text-align: center;
     height: 150px;
-    margin: 15px;
+    margin: auto;
 }

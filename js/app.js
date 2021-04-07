@@ -9,6 +9,7 @@ const page = '?page=';
 let currentPage = 1;
 let filter = '';
 let queryURL = baseURL + page + currentPage + filter;
+let pages = 34;
 //$.ajax() request for character data
 const getRequest = (url) => {
     $.ajax({
@@ -19,6 +20,7 @@ const getRequest = (url) => {
             console.log(queryURL)
             const allData = data
             console.log(allData)
+            pages = allData.info.pages
             const array = data.results
             console.log(array)
             const $cardContainer = $('#cardContainer');
@@ -30,9 +32,9 @@ const getRequest = (url) => {
                 const $cardImg = $('<img>').addClass('cardImg').attr('src', `${array[i].image}`);
                 const $cardTextContainer = $('<div>').addClass('cardTextContainer').html(`
                     <h3 class="cardText">${array[i].name}</h3>
-                    <p><span class='title'>Species: </span>${array[i].species}</p>
-                    <p><span class='title'>Subspecies (if applicable): </span>${array[i].type}</p>
-                    <button class='moreButton'>More information (not functional yet)</button>
+                    <p><span class='title'>Species: </span>${array[i].species}. ${array[i].type}</p>
+                    <p><span class='title'>Origin Planet: </span>${array[i].origin.name}</p>
+                    <p><span class='title'>Status: </span>${array[i].status}</p>
                     `);
                 $card.append($cardImg);
                 $card.append($cardTextContainer);
@@ -40,6 +42,7 @@ const getRequest = (url) => {
             }
         })
 }
+//<button class='moreButton'>More information (not functional yet)</button>
 
 const listeners = {
     id: 'object storing functions',
@@ -47,32 +50,35 @@ const listeners = {
     next: function (event) {
         event.preventDefault();
         $('#cardContainer').empty();
-        console.log('changing pages')
-        currentPage += 1
-        if (currentPage > 34) {
-            alert('you are already on the last page')
+        console.log('changing pages');
+        currentPage += 1;
+        if (currentPage > pages) {
+            alert('you are already on the last page');
+            currentPage -= 1;
+            getRequest();
         }
         queryURL = baseURL + page + currentPage + filter;
-        let $currentPage = $('.pg')
+        let $currentPage = $('.pg');
         $currentPage.text(currentPage);
-        getRequest()
+        getRequest();
     },
     //on prev button click
     prev: function (event) {
         event.preventDefault();
         $('#cardContainer').empty();
-        console.log('changing pages')
-        currentPage -= 1
+        console.log('changing pages');
+        currentPage -= 1;
         if (currentPage < 1) {
-            alert('you are already on the first page')
+            alert('you are already on the first page');
+            currentPage += 1;
+            getRequest();
         }
         queryURL = baseURL + page + currentPage + filter;
-        let $currentPage = $('.pg')
+        let $currentPage = $('.pg');
         $currentPage.text(currentPage);
         getRequest();
     },
     //on search button click
-    ///!!! SOMETHING is wrong here, loads first page of rick but nothing else and getting errors when trying to do other stuff
     search: function (event) {
         event.preventDefault();
         const $searchinput = $('#searchbar').val();
@@ -83,49 +89,50 @@ const listeners = {
         currentPage = 1
         // queryURL = baseURL + page + 1 + filter;
         queryURL = baseURL + page + currentPage + filter;
+        let $currentPage = $('.pg')
+        $currentPage.text(currentPage);
         getRequest();
+    },
+    //on alive filter button click
+    aliveFilter: function (event) {
+        event.preventDefault();
+        console.log('alive filter');
+        // filter = '&status=alive';
+        currentPage = 1;
+        filter = '&status=alive';
+        queryURL = baseURL + page + currentPage + filter;
+        let $currentPage = $('.pg');
+        $currentPage.text(currentPage);
+        getRequest();
+    },
+    //on dead filter button click
+    deadFilter: function (event) {
+        event.preventDefault();
+        console.log('dead filter');
+        // filter = '&status=alive';
+        currentPage = 1;
+        filter = '&status=dead';
+        queryURL = baseURL + page + currentPage + filter;
+        let $currentPage = $('.pg');
+        $currentPage.text(currentPage);
+        getRequest();
+    },
+    //on gender filter button click
+    genderFilter: function (event) {
+        event.preventDefault();
+        console.log('gender filter');
     }
 };
-// ended up putting both of these functions, withing my 'listeners' object and calling upon those methods during my event listener click events
-// const nextPage = (event) => {
-//     event.preventDefault();
-//     $('#cardContainer').empty();
-//     console.log('changing pages')
-//     currentPage += 1
-//     if (currentPage > 34) {
-//         alert('you are already on the last page')
-//         currentPage = 1;
-//     }
-//     let $currentPage = $('.pg')
-//     $currentPage.text(currentPage);
-//     getRequest()
-// }
-// const prevPage = (event) => {
-//     event.preventDefault();
-//     $('#cardContainer').empty();
-//     console.log('changing pages')
-//     currentPage -= 1
-//     if (currentPage < 1) {
-//         alert('you are already on the first page')
-//         currentPage = 34;
-//     }
-//     let $currentPage = $('.pg')
-//     $currentPage.text(currentPage);
-//     getRequest()
-// }
-// const searchFilter = (event) => {
-//     event.preventDefault();
-//     console.log('search button')
-// }
-
 $(() => {
     getRequest();
 
     $('.next').on('click', listeners.next);
-    // $('.next').on('click', nextPage);
 
     $('.previous').on('click', listeners.prev);
-    // $('.previous').on('click', prevPage);
 
     $('#search').on('click', listeners.search);
+
+    $('#aliveFilter').on('click', listeners.aliveFilter);
+    $('#deadFilter').on('click', listeners.deadFilter);
+    $('#genderFilter').on('click', listeners.genderFilter);
 });

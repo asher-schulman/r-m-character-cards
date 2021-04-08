@@ -29,7 +29,8 @@ const getRequest = () => {
             const $searchinput = $('#searchbar').val();
             $('#searchDisplay').empty();
             const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
-                <h2>Displaying ${characters} results: ${$searchinput}</h2>
+                <h2>Displaying ${characters} results: </h2>
+                <h2 id="displaySearch">${$searchinput}</h2>
             `);
             $('#searchDisplay').append($searchResultDisplay);
 

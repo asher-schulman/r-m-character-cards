@@ -18,6 +18,14 @@ const getRequest = () => {
     $.ajax({
             url: queryURL,
             type: 'GET',
+            statusCode: {
+                404: function() {
+                  alert("page not found");
+                  queryURL = 'https://rickandmortyapi.com/api/character?page=1';
+                  const $searchinput = $('#searchbar').val('');
+                  getRequest()
+                }
+            }
         })
         .then(results = (data) => {
             console.log(queryURL);

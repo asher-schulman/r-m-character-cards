@@ -10,21 +10,31 @@ let currentPage = 1;
 let filter = '';
 let queryURL = baseURL + page + currentPage + filter;
 let pages = 34;
+let characters = 0;
 //$.ajax() request for character data
-const getRequest = (url) => {
+const getRequest = () => {
+    const $cardContainer = $('#cardContainer');
+    $cardContainer.empty();
     $.ajax({
             url: queryURL,
             type: 'GET',
         })
         .then(results = (data) => {
-            console.log(queryURL)
-            const allData = data
-            console.log(allData)
-            pages = allData.info.pages
-            const array = data.results
-            console.log(array)
-            const $cardContainer = $('#cardContainer');
-            $cardContainer.empty();
+            console.log(queryURL);
+            const allData = data;
+            console.log(allData);
+            pages = allData.info.pages;
+            characters = allData.info.count;
+            
+            const $searchinput = $('#searchbar').val();
+            $('#searchDisplay').empty();
+            const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
+                <h2>Displaying ${characters} results: ${$searchinput}</h2>
+            `);
+            $('#searchDisplay').append($searchResultDisplay);
+
+            const array = data.results;
+            console.log(array);
             for (let i = 0; i < array.length; i++) {
                 console.log(`adding ${array[i].name} to a card`);
                 // const $cardContainer = $('#cardContainer');
@@ -32,7 +42,7 @@ const getRequest = (url) => {
                 const $cardImg = $('<img>').addClass('cardImg').attr('src', `${array[i].image}`);
                 const $cardTextContainer = $('<div>').addClass('cardTextContainer').html(`
                     <h3 class="cardText">${array[i].name}</h3>
-                    <p><span class='title'>Species: </span>${array[i].species}. ${array[i].type}</p>
+                    <p><span class='title'>Species: </span>${array[i].gender} ${array[i].species}. ${array[i].type}</p>
                     <p><span class='title'>Origin Planet: </span>${array[i].origin.name}</p>
                     <p><span class='title'>Status: </span>${array[i].status}</p>
                     `);
@@ -43,13 +53,11 @@ const getRequest = (url) => {
         })
 }
 //<button class='moreButton'>More information (not functional yet)</button>
-
 const listeners = {
     id: 'object storing functions',
     //on next button click
     next: function (event) {
         event.preventDefault();
-        $('#cardContainer').empty();
         console.log('changing pages');
         currentPage += 1;
         if (currentPage > pages) {
@@ -65,7 +73,6 @@ const listeners = {
     //on prev button click
     prev: function (event) {
         event.preventDefault();
-        $('#cardContainer').empty();
         console.log('changing pages');
         currentPage -= 1;
         if (currentPage < 1) {
@@ -87,10 +94,14 @@ const listeners = {
         //more code here
         filter = `&name=${$searchinput}`;
         currentPage = 1
-        // queryURL = baseURL + page + 1 + filter;
         queryURL = baseURL + page + currentPage + filter;
         let $currentPage = $('.pg')
         $currentPage.text(currentPage);
+        // $('#searchDisplay').empty();
+        // const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
+        //     <h2>Displaying ${characters} results for ${$searchinput}</h2>
+        // `);
+        // $('#searchDisplay').append($searchResultDisplay);
         getRequest();
     },
     //on alive filter button click
@@ -103,6 +114,11 @@ const listeners = {
         queryURL = baseURL + page + currentPage + filter;
         let $currentPage = $('.pg');
         $currentPage.text(currentPage);
+        // $('#searchDisplay').empty();
+        // const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
+        //     <h2>Displaying ${characters} alive characters</h2>
+        // `);
+        // $('#searchDisplay').append($searchResultDisplay);
         getRequest();
     },
     //on dead filter button click
@@ -115,26 +131,19 @@ const listeners = {
         queryURL = baseURL + page + currentPage + filter;
         let $currentPage = $('.pg');
         $currentPage.text(currentPage);
+        // $('#searchDisplay').empty();
+        // const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
+        //     <h2>Displaying ${characters} dead or unknown characters</h2>
+        // `);
+        // $('#searchDisplay').append($searchResultDisplay);
         getRequest();
     },
-    //on gender filter button click
-    genderFilter: function (event) {
-        event.preventDefault();
-        console.log('gender filter');
-    }
 };
 $(() => {
     getRequest();
-
     $('.next').on('click', listeners.next);
-
     $('.previous').on('click', listeners.prev);
-
     $('#search').on('click', listeners.search);
-
     $('#aliveFilter').on('click', listeners.aliveFilter);
-
     $('#deadFilter').on('click', listeners.deadFilter);
-    
-    $('#genderFilter').on('click', listeners.genderFilter);
 });

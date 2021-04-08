@@ -18,6 +18,10 @@ body {
     flex-flow: row wrap; */
 }
 
+#searchDisplay {
+    margin: auto;
+}
+
 button {
     font-size: 12pt;
     font-family: 'Montserrat', sans-serif;
@@ -28,7 +32,8 @@ button {
 } */
 
 #header {
-    height: 400px;
+    /* height: 400px; */
+    height: auto;
     width: 50%;
     margin: auto;
     /* position:sticky;
@@ -37,6 +42,8 @@ button {
 
 #navContainer {
     margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 #searchbar {
@@ -84,12 +91,12 @@ button {
     width: 150px;
     margin: auto;
 }
-
-#pageButtons {
+.pageButtons {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-items:center;
     height: 50px;
-    width: 400px;
+    width: 380px;
     margin: auto;
 }
 
@@ -102,7 +109,7 @@ button {
 
 #cardContainer {
     display: grid;
-    grid-template-columns: 40% 40%;
+    grid-template-columns: 45% 45%;
     /* display: flex;
     flex-flow: row wrap; */
     justify-content: center;
@@ -112,9 +119,6 @@ button {
 }
 
 @media only screen and (max-width:1200px) {
-    #header {
-        height: 500px;
-    }
     #cardContainer {
         display: flex;
         flex-flow: row wrap;
@@ -122,16 +126,15 @@ button {
     .card {
         height: 250px;
     }
-
+    #header {
+        width: 85%;
+    }
     img {
         height: 250px;
     }
 }
 
 @media only screen and (max-width:600px) {
-    #header {
-        height: 560px;
-    }
     h3 {
         margin: 0;
     }
@@ -142,6 +145,15 @@ button {
     #cardContainer {
         display: flex;
         flex-flow: row wrap;
+    }
+    #header {
+        width: 90%;
+    }
+    #filterbar {
+        flex-flow: column;
+        height: 150px;
+        justify-content: space-evenly;
+        align-items: center;
     }
     .card {
         height: 150px;

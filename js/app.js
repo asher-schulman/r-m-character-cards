@@ -72,7 +72,6 @@ const listeners = {
         if (currentPage > pages) {
             alert('you are already on the last page');
             currentPage -= 1;
-            getRequest();
         }
         queryURL = baseURL + page + currentPage + filter;
         let $currentPage = $('.pg');
@@ -87,7 +86,6 @@ const listeners = {
         if (currentPage < 1) {
             alert('you are already on the first page');
             currentPage += 1;
-            getRequest();
         }
         queryURL = baseURL + page + currentPage + filter;
         let $currentPage = $('.pg');

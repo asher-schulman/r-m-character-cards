@@ -33,5 +33,4 @@
 - tooltip on card hover to background/outline the card red like the searchbar
 - carousel the 20 cards in a carousel view
 - 'more info' button on each card
-- 
 * * *

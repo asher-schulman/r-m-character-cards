@@ -14,7 +14,9 @@ let characters = 0;
 //$.ajax() request for character data
 const getRequest = () => {
     const $cardContainer = $('#cardContainer');
+    //empty card container
     $cardContainer.empty();
+    //GET request with current queryURL
     $.ajax({
             url: queryURL,
             type: 'GET',
@@ -27,6 +29,7 @@ const getRequest = () => {
                 }
             }
         })
+        //then console log big data, update global variables with said data, build html elements with jQuery
         .then(results = (data) => {
             console.log(queryURL);
             const allData = data;
@@ -35,6 +38,7 @@ const getRequest = () => {
             characters = allData.info.count;
             
             const $searchinput = $('#searchbar').val();
+            //do i need line 42?
             $('#searchDisplay').empty();
             const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
                 <h2>Displaying ${characters} results: </h2>
@@ -61,7 +65,7 @@ const getRequest = () => {
             }
         })
 }
-//<button class='moreButton'>More information (not functional yet)</button>
+//object of listener functions as methods()
 const listeners = {
     id: 'object storing functions',
     //on next button click
@@ -104,11 +108,6 @@ const listeners = {
         queryURL = baseURL + page + currentPage + filter;
         let $currentPage = $('.pg')
         $currentPage.text(currentPage);
-        // $('#searchDisplay').empty();
-        // const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
-        //     <h2>Displaying ${characters} results for ${$searchinput}</h2>
-        // `);
-        // $('#searchDisplay').append($searchResultDisplay);
         getRequest();
     },
     //on alive filter button click
@@ -121,11 +120,6 @@ const listeners = {
         queryURL = baseURL + page + currentPage + filter;
         let $currentPage = $('.pg');
         $currentPage.text(currentPage);
-        // $('#searchDisplay').empty();
-        // const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
-        //     <h2>Displaying ${characters} alive characters</h2>
-        // `);
-        // $('#searchDisplay').append($searchResultDisplay);
         getRequest();
     },
     //on dead filter button click
@@ -138,14 +132,10 @@ const listeners = {
         queryURL = baseURL + page + currentPage + filter;
         let $currentPage = $('.pg');
         $currentPage.text(currentPage);
-        // $('#searchDisplay').empty();
-        // const $searchResultDisplay = $('<div>').addClass('searchDisplay').html(`
-        //     <h2>Displaying ${characters} dead or unknown characters</h2>
-        // `);
-        // $('#searchDisplay').append($searchResultDisplay);
         getRequest();
     },
 };
+//document on-load load first default page request, and "turn on" all listeners
 $(() => {
     getRequest();
     $('.next').on('click', listeners.next);

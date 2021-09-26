@@ -4,10 +4,6 @@
 
 **Goal:** Create a web application hosted on Github Pages that displays relevant character-specific data using the [Rick & Morty API](https://rickandmortyapi.com).
 
-**Start Date:** April 1st 2021
-
-**End Date:** April 9th 2021
-
 **Languages Used:** HTML | CSS | Javascript (jQuery)
 
 * * *
@@ -24,7 +20,7 @@
 - shows all characters in the Rick & Morty Universe in pages of 20
 - search by name for characters
 - filter by alive or dead characters
-- next/previous buttons to display next 20 results (search and filter stays applied)
+- next/previous buttons to fetch and display the next 20 results (search and filter stays applied)
 * * *
 
 ## Future Improvements

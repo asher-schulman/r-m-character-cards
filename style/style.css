@@ -1,21 +1,32 @@
-/* * {
+* {
     box-sizing: border-box;
-} */
+}
+
+
+body {
+    background-color: #202020;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    margin: auto;
+}
+
 h1 {
     font-size: 32pt;
     text-align: center;
 }
 
 h3 {
-    font-size: 16pt;
+    font-size: 32pt;
+    margin: 10px;
 }
 
-body {
-    background-color: #202020;
-    color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    /* display: flex;
-    flex-flow: row wrap; */
+p {
+    font-size: 26px;
+    margin: 5px;
+}
+
+#header p {
+    text-align: center;
 }
 
 #searchDisplay {
@@ -44,17 +55,10 @@ button:hover {
     font-size: 1.1em;
 }
 
-/* div {
-    border: 2px solid red;
-} */
-
 #header {
-    /* height: 400px; */
     height: auto;
     width: 50%;
     margin: auto;
-    /* position:sticky;
-    top: 0; */
 }
 
 #navContainer {
@@ -65,7 +69,7 @@ button:hover {
 
 #searchbar {
     background-color: #404040;
-    font-size: 12pt;
+    font-size: 14pt;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     width: 300px;
@@ -76,7 +80,7 @@ button:hover {
     margin: 5px;
     width: 150px;
     height: 40px;
-    font-size: 12pt;
+    font-size: 14pt;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -108,10 +112,11 @@ button:hover {
     width: 150px;
     margin: auto;
 }
+
 .pageButtons {
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     height: 50px;
     width: 380px;
     margin: auto;
@@ -125,65 +130,14 @@ button:hover {
 }
 
 #cardContainer {
-    display: grid;
-    grid-template-columns: 45% 45%;
-    /* display: flex;
-    flex-flow: row wrap; */
-    justify-content: center;
-    margin: auto;
-    height: auto;
-    width: auto;
-}
-
-@media only screen and (max-width:1200px) {
-    #cardContainer {
-        display: flex;
-        flex-flow: row wrap;
-    }
-    .card {
-        height: 250px;
-    }
-    #header {
-        width: 85%;
-    }
-    img {
-        height: 250px;
-    }
-}
-
-@media only screen and (max-width:600px) {
-    h3 {
-        margin: 0;
-    }
-    p {
-        font-size: 12pt;
-        margin: 0;
-    }
-    #cardContainer {
-        display: flex;
-        flex-flow: row wrap;
-    }
-    #header {
-        width: 90%;
-    }
-    #filterbar {
-        flex-flow: column;
-        height: 150px;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-    .card {
-        height: 150px;
-    }
-    img {
-        height: 150px;
-    }
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .cardTextContainer {
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
+    padding: 10px;
 }
 
 .cardImg {
@@ -197,7 +151,7 @@ button:hover {
     border-radius: 15px;
     /* background-image: url(/assets/background-sunset.jpg); */
     display: flex;
-    width: 90%;
+    width: 90vw;
     /* height: auto; */
     margin: 15px;
 }
@@ -210,4 +164,65 @@ button:hover {
     text-align: center;
     height: 150px;
     margin: auto;
+}
+
+/* teblet-responsiveness */
+@media only screen and (max-width:1500px) {
+    #cardContainer {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .card {
+        height: 200px;
+    }
+
+    #header {
+        width: 85%;
+    }
+
+    img {
+        height: 200px;
+    }
+}
+
+/* phone-responsiveness */
+@media only screen and (max-width:600px) {
+    h3 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    p {
+        font-size: 10pt;
+        margin: 0;
+    }
+
+    #cardContainer {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .cardTextContainer {
+        padding: 5px;
+    }
+
+    #header {
+        width: 90vw;
+    }
+
+    #filterbar {
+        flex-flow: column;
+        height: 150px;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .card {
+        height: 30vw;
+    }
+
+    img {
+        height: 30vw;
+    }
 }

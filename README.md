@@ -1,6 +1,7 @@
 # Rick & Morty Character Viewer
 
 ### *created for General Assembly's SEI Course*
+### https://asher-schulman.github.io/r-m-character-cards/
 
 **Goal:** Create a web application hosted on Github Pages that displays relevant character-specific data using the [Rick & Morty API](https://rickandmortyapi.com).
 
